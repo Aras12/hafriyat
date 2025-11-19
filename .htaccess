@@ -2,7 +2,7 @@
 
 # Enable Rewrite Engine
 RewriteEngine On
-RewriteBase /
+RewriteBase /hafriyat/
 
 # Remove index.php from URL
 RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
