@@ -1,9 +1,24 @@
 <?php
-$pageTitle = 'SSS Düzenle';
-include 'includes/header.php';
-$id = (int)$_GET['id'];
-$faq = $db->fetchOne("SELECT * FROM faqs WHERE id = ?", [$id]);
-if (!$faq) { setFlash('error', 'SSS bulunamadı!'); header('Location: faqs.php'); exit; }
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// GET existing data BEFORE POST check
+$id = (int)($_GET['id'] ?? 0);
+if ($id > 0) {
+    $faq = $db->fetchOne("SELECT * FROM faqs WHERE id = ?", [$id]);
+    if (!$faq) {
+        setFlash('error', 'SSS bulunamadı!');
+        header('Location: faqs.php');
+        exit;
+    }
+} else {
+    setFlash('error', 'Geçersiz SSS ID!');
+    header('Location: faqs.php');
+    exit;
+}
+
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $question = clean($_POST['question']);
     $answer = clean($_POST['answer']);
@@ -15,6 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+// NOW include header
+$pageTitle = 'SSS Düzenle';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header"><i class="fas fa-edit"></i> SSS Düzenle</div>

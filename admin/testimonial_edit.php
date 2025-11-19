@@ -1,9 +1,24 @@
 <?php
-$pageTitle = 'Yorum Düzenle';
-include 'includes/header.php';
-$id = (int)$_GET['id'];
-$t = $db->fetchOne("SELECT * FROM testimonials WHERE id = ?", [$id]);
-if (!$t) { setFlash('error', 'Yorum bulunamadı!'); header('Location: testimonials.php'); exit; }
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// GET existing data BEFORE POST check
+$id = (int)($_GET['id'] ?? 0);
+if ($id > 0) {
+    $t = $db->fetchOne("SELECT * FROM testimonials WHERE id = ?", [$id]);
+    if (!$t) {
+        setFlash('error', 'Yorum bulunamadı!');
+        header('Location: testimonials.php');
+        exit;
+    }
+} else {
+    setFlash('error', 'Geçersiz yorum ID!');
+    header('Location: testimonials.php');
+    exit;
+}
+
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $client_name = clean($_POST['client_name']);
     $client_company = clean($_POST['client_company']);
@@ -18,6 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+// NOW include header
+$pageTitle = 'Yorum Düzenle';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header"><i class="fas fa-edit"></i> Yorum Düzenle</div>

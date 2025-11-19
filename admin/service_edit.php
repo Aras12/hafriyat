@@ -1,11 +1,27 @@
 <?php
-$pageTitle = 'Hizmet Düzenle';
-include 'includes/header.php';
-$id = (int)$_GET['id'];
-$service = $db->fetchOne("SELECT * FROM services WHERE id = ?", [$id]);
-if (!$service) { setFlash('error', 'Hizmet bulunamadı!'); header('Location: services.php'); exit; }
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// GET existing data BEFORE POST check
+$id = (int)($_GET['id'] ?? 0);
+if ($id > 0) {
+    $service = $db->fetchOne("SELECT * FROM services WHERE id = ?", [$id]);
+    if (!$service) {
+        setFlash('error', 'Hizmet bulunamadı!');
+        header('Location: services.php');
+        exit;
+    }
+} else {
+    setFlash('error', 'Geçersiz hizmet ID!');
+    header('Location: services.php');
+    exit;
+}
+
+// GET tabs data for form
 $tabs = $db->fetchAll("SELECT * FROM service_tabs WHERE status = 1 ORDER BY sort_order");
 
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
@@ -33,6 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+// NOW include header
+$pageTitle = 'Hizmet Düzenle';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header"><i class="fas fa-edit"></i> Hizmet Düzenle</div>

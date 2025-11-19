@@ -1,8 +1,12 @@
 <?php
-$pageTitle = 'Yeni Hizmet';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// GET tabs data for form
 $tabs = $db->fetchAll("SELECT * FROM service_tabs WHERE status = 1 ORDER BY sort_order");
 
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
@@ -31,6 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+// NOW include header
+$pageTitle = 'Yeni Hizmet';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header"><i class="fas fa-plus"></i> Yeni Hizmet</div>

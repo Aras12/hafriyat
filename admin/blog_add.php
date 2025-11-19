@@ -1,7 +1,9 @@
 <?php
-$pageTitle = 'Yeni Blog Yazısı';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
@@ -30,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         setFlash('error', 'Blog yazısı eklenirken hata oluştu!');
     }
 }
+
+// NOW include header
+$pageTitle = 'Yeni Blog Yazısı';
+include 'includes/header.php';
 ?>
 
 <div class="card">

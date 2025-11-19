@@ -1,16 +1,24 @@
 <?php
-$pageTitle = 'Slider Düzenle';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
-$id = (int)$_GET['id'];
-$slider = $db->fetchOne("SELECT * FROM sliders WHERE id = ?", [$id]);
-
-if (!$slider) {
-    setFlash('error', 'Slider bulunamadı!');
+// GET existing data BEFORE POST check
+$id = (int)($_GET['id'] ?? 0);
+if ($id > 0) {
+    $slider = $db->fetchOne("SELECT * FROM sliders WHERE id = ?", [$id]);
+    if (!$slider) {
+        setFlash('error', 'Slider bulunamadı!');
+        header('Location: sliders.php');
+        exit;
+    }
+} else {
+    setFlash('error', 'Geçersiz slider ID!');
     header('Location: sliders.php');
     exit;
 }
 
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = clean($_POST['title']);
     $description = clean($_POST['description']);
@@ -41,6 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         setFlash('error', 'Slider güncellenirken hata oluştu!');
     }
 }
+
+// NOW include header
+$pageTitle = 'Slider Düzenle';
+include 'includes/header.php';
 ?>
 
 <div class="card">

@@ -1,16 +1,24 @@
 <?php
-$pageTitle = 'Blog Düzenle';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
-$id = (int)$_GET['id'];
-$blog = $db->fetchOne("SELECT * FROM blog WHERE id = ?", [$id]);
-
-if (!$blog) {
-    setFlash('error', 'Blog yazısı bulunamadı!');
+// GET existing data BEFORE POST check
+$id = (int)($_GET['id'] ?? 0);
+if ($id > 0) {
+    $blog = $db->fetchOne("SELECT * FROM blog WHERE id = ?", [$id]);
+    if (!$blog) {
+        setFlash('error', 'Blog yazısı bulunamadı!');
+        header('Location: blog.php');
+        exit;
+    }
+} else {
+    setFlash('error', 'Geçersiz blog ID!');
     header('Location: blog.php');
     exit;
 }
 
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
@@ -40,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         setFlash('error', 'Blog yazısı güncellenirken hata oluştu!');
     }
 }
+
+// NOW include header
+$pageTitle = 'Blog Düzenle';
+include 'includes/header.php';
 ?>
 
 <div class="card">

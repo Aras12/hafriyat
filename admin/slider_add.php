@@ -1,6 +1,7 @@
 <?php
-$pageTitle = 'Yeni Slider Ekle';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = clean($_POST['title']);
@@ -35,6 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         setFlash('error', 'Slider eklenirken hata oluştu!');
     }
 }
+
+$pageTitle = 'Yeni Slider Ekle';
+include 'includes/header.php';
 ?>
 
 <div class="card">

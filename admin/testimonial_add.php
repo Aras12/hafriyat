@@ -1,6 +1,9 @@
 <?php
-$pageTitle = 'Yeni Yorum';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $client_name = clean($_POST['client_name']);
     $client_company = clean($_POST['client_company']);
@@ -15,6 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+// NOW include header
+$pageTitle = 'Yeni Yorum';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header"><i class="fas fa-plus"></i> Yeni Yorum</div>

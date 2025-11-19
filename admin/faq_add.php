@@ -1,6 +1,9 @@
 <?php
-$pageTitle = 'Yeni SSS';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $question = clean($_POST['question']);
     $answer = clean($_POST['answer']);
@@ -12,6 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+// NOW include header
+$pageTitle = 'Yeni SSS';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header"><i class="fas fa-plus"></i> Yeni SSS</div>
