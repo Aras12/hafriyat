@@ -1,4 +1,8 @@
 <?php
+require_once 'config.php';
+
+$db = Database::getInstance();
+
 $pageTitle = 'Ana Sayfa';
 $pageMetaTitle = getMeta('meta_home_title', 'Kayseri Emir Hafriyat');
 $pageMetaDesc = getMeta('meta_home_description', '');

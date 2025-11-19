@@ -1,4 +1,7 @@
 <?php
+require_once 'config.php';
+$db = Database::getInstance();
+
 $slug = $_GET['slug'] ?? '';
 $blog = $db->fetchOne("SELECT * FROM blog WHERE slug = ? AND status = 1", [$slug]);
 

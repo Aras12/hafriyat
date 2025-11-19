@@ -2,11 +2,11 @@
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /hafriyat/
+RewriteBase /
 
 # Admin ve assets'i atla
-RewriteCond %{REQUEST_URI} ^/hafriyat/admin [NC,OR]
-RewriteCond %{REQUEST_URI} ^/hafriyat/assets [NC]
+RewriteCond %{REQUEST_URI} ^/admin [NC,OR]
+RewriteCond %{REQUEST_URI} ^/assets [NC]
 RewriteRule ^ - [L]
 
 # PHP uzantısını kaldır (sadece dosya varsa)

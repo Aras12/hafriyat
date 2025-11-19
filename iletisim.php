@@ -1,4 +1,7 @@
 <?php
+require_once 'config.php';
+$db = Database::getInstance();
+
 $pageTitle = 'İletişim';
 $page = $db->fetchOne("SELECT * FROM pages WHERE page_key = 'iletisim'", []);
 $pageMetaTitle = $page['meta_title'] ?? 'İletişim | Emir Hafriyat';

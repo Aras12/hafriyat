@@ -1,0 +1,79 @@
+###############################################################################
+# KURULUM REHBERİ - ADIM ADIM
+###############################################################################
+
+Bu paket .htaccess OLMADAN çalışır!
+URL'ler .php uzantılı olacak ama site tam çalışacak!
+
+═══════════════════════════════════════════════════════════════════════════════
+ADIM 1: DOSYALARI YÜKLE
+═══════════════════════════════════════════════════════════════════════════════
+
+ZIP'i aç, TÜM dosyaları sunucuya yükle:
+- cPanel → Dosya Yöneticisi
+- public_html/ (veya addon domain klasörü)
+- Upload → ZIP seç → Extract (Çıkart)
+
+═══════════════════════════════════════════════════════════════════════════════
+ADIM 2: VERİTABANI OLUŞTUR
+═══════════════════════════════════════════════════════════════════════════════
+
+cPanel → MySQL Databases:
+
+1. Yeni veritabanı: emirhafriyat
+2. Yeni kullanıcı: emiruser + şifre
+3. Kullanıcıyı DB'ye ekle + ALL PRIVILEGES
+4. phpMyAdmin → database.sql import et
+
+═══════════════════════════════════════════════════════════════════════════════
+ADIM 3: config.php DÜZENLE
+═══════════════════════════════════════════════════════════════════════════════
+
+Sadece 4 satırı değiştir:
+
+define('DB_NAME', 'kullaniciadi_emirhafriyat');  ← DB tam adı
+define('DB_USER', 'kullaniciadi_emiruser');      ← Kullanıcı tam adı
+define('DB_PASS', 'sifreniz');                   ← Şifre
+define('SITE_URL', 'https://adanaotokokusu.com.tr'); ← Domain
+
+═══════════════════════════════════════════════════════════════════════════════
+ADIM 4: TEST ET
+═══════════════════════════════════════════════════════════════════════════════
+
+1. https://adanaotokokusu.com.tr/kurulum-test.php
+   ✅ Tüm kontroller yeşil olmalı!
+
+2. https://adanaotokokusu.com.tr/index.php
+   ✅ Ana sayfa açılmalı!
+
+3. https://adanaotokokusu.com.tr/admin/login.php
+   Kullanıcı: admin
+   Şifre: admin123
+
+═══════════════════════════════════════════════════════════════════════════════
+URL YAPISI (.htaccess OLMADAN)
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Ana Sayfa: /index.php
+✅ Hakkımızda: /hakkimizda.php
+✅ Hizmetler: /hizmetler.php
+✅ Blog: /blog.php
+✅ İletişim: /iletisim.php
+✅ Galeri: /galeri.php
+✅ Projeler: /projeler.php
+✅ Admin: /admin/login.php
+
+Blog detay: /blog-single.php?slug=blog-basligi
+Hizmet detay: /hizmet-single.php?slug=ekskavator
+
+.php uzantısı olacak ama SİTE ÇALIŞACAK!
+
+═══════════════════════════════════════════════════════════════════════════════
+SORUN GİDERME
+═══════════════════════════════════════════════════════════════════════════════
+
+❌ 500 Hatası: config.php'de DB bilgileri yanlış
+❌ Beyaz sayfa: kurulum-test.php'yi aç, hangi hata göreceksin
+❌ Admin açılmıyor: /admin/login.php (direkt yaz)
+
+═══════════════════════════════════════════════════════════════════════════════
