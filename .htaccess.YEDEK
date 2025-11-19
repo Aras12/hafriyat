@@ -1,3 +1,8 @@
+# EĞER 500 HATASI ALIYORSANIZ:
+# 1. .htaccess dosyasını geçici olarak silin veya .htaccess.kapali olarak adlandırın
+# 2. Doğrudan index.php, test.php gibi dosyaları açın
+# 3. PHP hatası mı, .htaccess hatası mı anlayın
+
 # Minimal .htaccess - 500 Hatası Çözümü
 
 <IfModule mod_rewrite.c>
@@ -14,11 +19,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L]
-</IfModule>
-
-# PHP ayarları
-<IfModule mod_php7.c>
-php_value upload_max_filesize 10M
-php_value post_max_size 10M
-php_value memory_limit 128M
 </IfModule>
