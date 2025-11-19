@@ -1,0 +1,10 @@
+# EN MİNİMAL .htaccess - Sadece güvenlik
+
+# Dizin listelemeyi kapat
+Options -Indexes
+
+# PHP ayarları
+<IfModule mod_php.c>
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+</IfModule>
