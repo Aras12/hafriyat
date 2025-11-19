@@ -82,25 +82,26 @@ body {
 }
 
 .carousel-caption {
-  bottom: 50%;
-  transform: translateY(50%);
-  background: rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  border-radius: 10px;
+  bottom: 15%;
+  transform: translateY(0);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 20px 25px;
+  border-radius: 8px;
 }
 
 .carousel-caption h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   color: var(--primary-yellow);
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+  margin-bottom: 10px;
 }
 
 .carousel-caption p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--white);
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+  margin-bottom: 0;
 }
 
 /* Section Titles */
