@@ -9,9 +9,10 @@
 
 :root {
   --primary-yellow: #FFC107;
-  --dark-gray: #1B1B1B;
+  --primary-blue: #1E40AF;
+  --dark-blue: #0F172A;
+  --light-blue: #3B82F6;
   --bg-gray: #F5F5F5;
-  --orange-accent: #FF6A00;
   --white: #ffffff;
   --text-dark: #333333;
 }
@@ -32,7 +33,7 @@ body {
 
 /* Navbar */
 .navbar {
-  background-color: var(--dark-gray) !important;
+  background-color: var(--dark-blue) !important;
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
@@ -46,7 +47,7 @@ body {
 }
 
 .navbar-brand:hover {
-  color: var(--orange-accent) !important;
+  color: var(--light-blue) !important;
 }
 
 .navbar-nav .nav-link {
@@ -71,7 +72,7 @@ body {
 
 .carousel-item {
   height: 600px;
-  background-color: var(--dark-gray);
+  background-color: var(--dark-blue);
 }
 
 .carousel-item img {
@@ -112,7 +113,7 @@ body {
 .section-title h2 {
   font-size: 2.5rem;
   font-weight: bold;
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   position: relative;
   display: inline-block;
   padding-bottom: 15px;
@@ -126,7 +127,7 @@ body {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(to right, var(--primary-yellow), var(--orange-accent));
+  background: linear-gradient(to right, var(--primary-yellow), var(--light-blue));
 }
 
 .section-title p {
@@ -150,7 +151,7 @@ body {
 .service-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  border-top-color: var(--orange-accent);
+  border-top-color: var(--light-blue);
 }
 
 .service-card i {
@@ -161,7 +162,7 @@ body {
 
 .service-card h3 {
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   margin-bottom: 15px;
   font-weight: bold;
 }
@@ -203,7 +204,7 @@ body {
 
 .project-card-body h4 {
   font-size: 1.3rem;
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -226,13 +227,13 @@ body {
 
 .why-us-card i {
   font-size: 3rem;
-  color: var(--orange-accent);
+  color: var(--light-blue);
   margin-bottom: 15px;
 }
 
 .why-us-card h4 {
   font-size: 1.3rem;
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -455,7 +456,7 @@ body {
 .btn-primary {
   background-color: var(--primary-yellow);
   border-color: var(--primary-yellow);
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: bold;
   padding: 12px 40px;
   border-radius: 5px;
@@ -463,8 +464,8 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: var(--orange-accent);
-  border-color: var(--orange-accent);
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
   color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -472,7 +473,7 @@ body {
 
 /* Footer */
 footer {
-  background-color: var(--dark-gray);
+  background-color: var(--dark-blue);
   color: var(--white);
   padding: 50px 0 20px;
   margin-top: 80px;
@@ -613,7 +614,7 @@ footer {
 }
 
 .testimonial-author strong {
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   display: block;
   margin-bottom: 5px;
 }
@@ -654,7 +655,7 @@ footer {
 }
 
 .blog-date {
-  color: var(--orange-accent);
+  color: var(--light-blue);
   font-size: 0.9rem;
   font-weight: 600;
   display: block;
@@ -663,7 +664,7 @@ footer {
 
 .blog-card-body h4 {
   font-size: 1.2rem;
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -676,7 +677,7 @@ footer {
 
 /* Nav Pills Custom */
 .nav-pills .nav-link {
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: 600;
   border: 2px solid #e0e0e0;
   margin: 0 5px;
@@ -691,7 +692,7 @@ footer {
 .nav-pills .nav-link.active {
   background: var(--primary-yellow);
   border-color: var(--primary-yellow);
-  color: var(--dark-gray);
+  color: var(--dark-blue);
 }
 
 /* Accordion Custom */
@@ -705,14 +706,14 @@ footer {
 
 .accordion-button {
   background: var(--white);
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: 600;
   padding: 20px;
 }
 
 .accordion-button:not(.collapsed) {
   background: var(--primary-yellow);
-  color: var(--dark-gray);
+  color: var(--dark-blue);
 }
 
 .accordion-button:focus {
@@ -735,7 +736,7 @@ footer {
 }
 
 .sidebar-widget h4 {
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: bold;
   margin-bottom: 20px;
   padding-bottom: 15px;
@@ -765,7 +766,7 @@ footer {
 .sidebar-menu li a:hover,
 .sidebar-menu li a.active {
   background: var(--primary-yellow);
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   padding-left: 25px;
 }
 
@@ -783,7 +784,7 @@ footer {
 }
 
 .service-detail-content h1 {
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: bold;
   margin-bottom: 20px;
   padding-bottom: 15px;
@@ -791,7 +792,7 @@ footer {
 }
 
 .service-detail-content h2 {
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: bold;
   margin-top: 30px;
   margin-bottom: 15px;
@@ -799,7 +800,7 @@ footer {
 }
 
 .service-detail-content h3 {
-  color: var(--orange-accent);
+  color: var(--light-blue);
   font-weight: bold;
   margin-top: 25px;
   margin-bottom: 12px;
@@ -845,13 +846,13 @@ footer {
 }
 
 .feature-box h4 {
-  color: var(--dark-gray);
+  color: var(--dark-blue);
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .price-box {
-  background: linear-gradient(135deg, var(--primary-yellow), var(--orange-accent));
+  background: linear-gradient(135deg, var(--primary-yellow), var(--light-blue));
   color: var(--white);
   padding: 30px;
   border-radius: 10px;
@@ -885,7 +886,7 @@ footer {
 
 .dropdown-item:hover {
   background: var(--primary-yellow);
-  color: var(--dark-gray);
+  color: var(--dark-blue);
 }
 
 .dropdown-divider {
