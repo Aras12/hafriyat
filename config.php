@@ -16,7 +16,10 @@ define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site ayarları
-define('SITE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
+// Alt klasör için doğru URL tespiti
+$scriptDir = dirname($_SERVER['SCRIPT_NAME']);
+$baseUrl = str_replace('/admin', '', $scriptDir); // Admin klasörünü çıkar
+define('SITE_URL', rtrim($baseUrl, '/'));
 define('BASE_PATH', __DIR__);
 
 // Timezone
