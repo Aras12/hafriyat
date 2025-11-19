@@ -38,9 +38,13 @@ function excerpt($text, $length = 150) {
     return $text . '...';
 }
 
-// URL oluşturma
+// URL oluşturma - Basitleştirilmiş
 function siteUrl($path = '') {
-    $base = rtrim($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . SITE_URL, '/');
+    // SITE_URL zaten tam URL içeriyor (https://site.com/klasor)
+    $base = rtrim(SITE_URL, '/');
+    if (empty($path)) {
+        return $base;
+    }
     return $base . '/' . ltrim($path, '/');
 }
 

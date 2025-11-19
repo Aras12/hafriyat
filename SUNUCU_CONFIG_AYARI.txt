@@ -1,0 +1,67 @@
+###############################################################################
+# ÖNEMLİ: SUNUCUDA CONFIG.PHP DOSYASINI BU ŞEKİLDE DÜZENLEYİN!
+###############################################################################
+
+Sunucunuzdaki /hafriyat/config.php dosyasını açın ve şu satırı bulun:
+
+   define('SITE_URL', 'https://demosu.gen.tr/hafriyat');
+
+Eğer bu satır:
+   define('SITE_URL', '/hafriyat');
+şeklinde görünüyorsa, TAM URL olarak değiştirin:
+
+   define('SITE_URL', 'https://demosu.gen.tr/hafriyat');
+
+###############################################################################
+# KOMPLE CONFIG.PHP İÇERİĞİ (KOPYALA-YAPIŞTIR)
+###############################################################################
+
+<?php
+/**
+ * Kayseri Emir Hafriyat - Konfigürasyon Dosyası
+ */
+
+// Hata raporlama
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Veritabanı ayarları - BUNLARI DEĞİŞTİRİN!
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'BURAYA_VERİTABANI_ADI');    // Örn: demosutr_hafriyat
+define('DB_USER', 'BURAYA_KULLANICI_ADI');     // Örn: demosutr_user
+define('DB_PASS', 'BURAYA_ŞİFRE');             // Veritabanı şifresi
+define('DB_CHARSET', 'utf8mb4');
+
+// Site ayarları - TAM URL YAZIN!
+define('SITE_URL', 'https://demosu.gen.tr/hafriyat');
+define('BASE_PATH', __DIR__);
+
+// Timezone
+date_default_timezone_set('Europe/Istanbul');
+
+// Session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Autoload
+spl_autoload_register(function($class) {
+    $file = BASE_PATH . '/includes/classes/' . $class . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
+
+// Yardımcı fonksiyonlar
+require_once BASE_PATH . '/includes/functions.php';
+
+###############################################################################
+# 3 ADIMDA ÇÖZÜM
+###############################################################################
+
+1. Sunucuda /hafriyat/config.php dosyasını düzenleyin
+2. SITE_URL satırını TAM URL olarak yazın (yukarıdaki gibi)
+3. Veritabanı bilgilerini girin
+4. test.php'yi tekrar çalıştırın
+
+###############################################################################

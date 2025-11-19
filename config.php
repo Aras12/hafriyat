@@ -16,10 +16,10 @@ define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site ayarları
-// Alt klasör için doğru URL tespiti
-$scriptDir = dirname($_SERVER['SCRIPT_NAME']);
-$baseUrl = str_replace('/admin', '', $scriptDir); // Admin klasörünü çıkar
-define('SITE_URL', rtrim($baseUrl, '/'));
+// ÖNEMLI: Sitenizi kurduğunuz yerin tam URL'sini yazın (sonunda / olmadan)
+// Ana dizine kurulum: https://siteniz.com
+// Alt klasöre kurulum: https://siteniz.com/klasor
+define('SITE_URL', 'https://demosu.gen.tr/hafriyat');
 define('BASE_PATH', __DIR__);
 
 // Timezone
