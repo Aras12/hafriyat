@@ -1,0 +1,122 @@
+═══════════════════════════════════════════════════════════════════════════════
+    .htaccess OLMADAN SİTEYİ KULLANMA REHBERİ
+═══════════════════════════════════════════════════════════════════════════════
+
+SORUN: .htaccess dosyası 404 hatası veriyor, dosyalar bulunamıyor.
+
+ÇÖZÜM: .htaccess'i kaldır, URL'lerde .php uzantısı kullan!
+
+═══════════════════════════════════════════════════════════════════════════════
+  ADIM 1: .htaccess'i KALDIR
+═══════════════════════════════════════════════════════════════════════════════
+
+cPanel → Dosya Yöneticisi:
+1. /hafriyat/ klasörüne git
+2. .htaccess dosyasını BUL
+3. Sağ tık → SİL (veya .htaccess.ESKİ olarak adlandır)
+
+═══════════════════════════════════════════════════════════════════════════════
+  ADIM 2: URL'LERİ BU ŞEKİLDE KULLAN
+═══════════════════════════════════════════════════════════════════════════════
+
+.htaccess olmadan URL'ler şöyle olacak (.php uzantılı):
+
+✅ Ana Sayfa:
+   https://demosu.gen.tr/hafriyat/index.php
+
+✅ Hakkımızda:
+   https://demosu.gen.tr/hafriyat/hakkimizda.php
+
+✅ Hizmetler:
+   https://demosu.gen.tr/hafriyat/hizmetler.php
+
+✅ Blog:
+   https://demosu.gen.tr/hafriyat/blog.php
+
+✅ İletişim:
+   https://demosu.gen.tr/hafriyat/iletisim.php
+
+✅ Galeri:
+   https://demosu.gen.tr/hafriyat/galeri.php
+
+✅ Projeler:
+   https://demosu.gen.tr/hafriyat/projeler.php
+
+✅ ADMIN PANEL:
+   https://demosu.gen.tr/hafriyat/admin/login.php
+   Kullanıcı: admin
+   Şifre: admin123
+
+═══════════════════════════════════════════════════════════════════════════════
+  ADIM 3: CONFIG.PHP'Yİ DÜZENLE
+═══════════════════════════════════════════════════════════════════════════════
+
+cPanel → Dosya Yöneticisi → /hafriyat/config.php
+
+SADECE 3 SATIRI DEĞİŞTİR:
+
+define('DB_NAME', 'BURAYA_DB_ADINIZ');      // cPanel'de oluşturduğunuz DB
+define('DB_USER', 'BURAYA_KULLANICI');      // DB kullanıcısı
+define('DB_PASS', 'BURAYA_ŞİFRE');          // DB şifresi
+
+DİĞER SATIRLARA DOKUNMA!
+
+═══════════════════════════════════════════════════════════════════════════════
+  ADIM 4: VERİTABANINI OLUŞTUR
+═══════════════════════════════════════════════════════════════════════════════
+
+cPanel → MySQL Databases:
+
+1. Yeni veritabanı oluştur (örn: demosutr_hafriyat)
+2. Yeni kullanıcı oluştur (örn: demosutr_user)
+3. Kullanıcıya TÜM yetkiler ver
+4. phpMyAdmin aç
+5. database.sql dosyasını import et
+
+═══════════════════════════════════════════════════════════════════════════════
+  ADIM 5: TEST ET
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Ana sayfa:
+   https://demosu.gen.tr/hafriyat/index.php
+
+2. Admin panel:
+   https://demosu.gen.tr/hafriyat/admin/login.php
+
+3. Test sayfası:
+   https://demosu.gen.tr/hafriyat/test.php
+
+═══════════════════════════════════════════════════════════════════════════════
+  NEDEN .htaccess KULLANMIYORUZ?
+═══════════════════════════════════════════════════════════════════════════════
+
+❌ Bazı sunucularda .htaccess sorun çıkarıyor
+❌ mod_rewrite kapalı olabilir
+❌ Yanlış yapılandırma 404/500 hatası veriyor
+
+✅ .php uzantılı URL'ler %100 çalışır
+✅ Sunucu ayarına bağlı değildir
+✅ Hata riski yoktur
+
+═══════════════════════════════════════════════════════════════════════════════
+  SİTE ÇALIŞINCA NE YAPACAĞIM?
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Admin panele gir: /admin/login.php
+2. Slider, hizmet, blog içeriklerini düzenle
+3. Site ayarlarını güncelle (logo, telefon, adres)
+4. İlk şifreyi değiştir!
+
+═══════════════════════════════════════════════════════════════════════════════
+  ÖZET - HIZLI BAŞLANGIÇ
+═══════════════════════════════════════════════════════════════════════════════
+
+1. ❌ .htaccess SİL
+2. ✅ config.php düzenle (DB bilgileri)
+3. ✅ database.sql import et
+4. ✅ https://demosu.gen.tr/hafriyat/index.php aç
+5. ✅ https://demosu.gen.tr/hafriyat/admin/login.php gir
+
+BITTI! Site çalışacak!
+
+═══════════════════════════════════════════════════════════════════════════════
