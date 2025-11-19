@@ -1,11 +1,20 @@
 # Kayseri Emir Hafriyat - SEF URL
 
 RewriteEngine On
+
+# ============================================
+# DURUM 1: Root dizinde ise bu satırı kullanın
+# RewriteBase /
+# ============================================
+
+# ============================================
+# DURUM 2: Alt klasörde ise bu satırı kullanın
 RewriteBase /hafriyat/
+# ============================================
 
 # Admin ve assets klasörlerini atla
-RewriteCond %{REQUEST_URI} ^/hafriyat/admin [NC,OR]
-RewriteCond %{REQUEST_URI} ^/hafriyat/assets [NC]
+RewriteCond %{REQUEST_URI} /admin [NC,OR]
+RewriteCond %{REQUEST_URI} /assets [NC]
 RewriteRule ^ - [L]
 
 # .php uzantısını kaldır

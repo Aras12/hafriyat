@@ -1,0 +1,110 @@
+###############################################################################
+# ADDON DOMAIN VE ALT KLASÖR KURULUM REHBERİ
+###############################################################################
+
+SİTENİZE NASIL ERİŞİYORSUNUZ? Önce bunu belirleyin!
+
+###############################################################################
+# DURUM 1: ADDON DOMAIN ROOT'TA (Önerilen)
+###############################################################################
+
+Eğer siteniz direkt şu şekilde açılıyorsa:
+   https://demosu.gen.tr  (sonunda /hafriyat YOK)
+
+1. config.php'de şu satırı aktif edin:
+   define('SITE_URL', 'https://demosu.gen.tr');
+
+2. .htaccess'te şu satırı aktif edin:
+   RewriteBase /
+
+3. Dosyalar şu yolda olmalı:
+   /home/kullanici/demosu.gen.tr/
+   veya
+   /home/kullanici/public_html/demosu.gen.tr/
+
+###############################################################################
+# DURUM 2: ALT KLASÖRDE (Şu anki durum)
+###############################################################################
+
+Eğer siteniz şu şekilde açılıyorsa:
+   https://demosu.gen.tr/hafriyat
+
+1. config.php'de şu satır zaten aktif:
+   define('SITE_URL', 'https://demosu.gen.tr/hafriyat');
+
+2. .htaccess'te şu satır zaten aktif:
+   RewriteBase /hafriyat/
+
+3. Dosyalar şu yolda:
+   /home/kullanici/public_html/hafriyat/
+
+###############################################################################
+# DURUM 3: BAŞKA BİR ADDON DOMAIN
+###############################################################################
+
+Eğer başka bir domain kullanıyorsanız:
+   https://kayseriemirhafriyat.com.tr
+
+1. config.php'de şu satırı aktif edin:
+   define('SITE_URL', 'https://kayseriemirhafriyat.com.tr');
+
+2. .htaccess'te şu satırı aktif edin:
+   RewriteBase /
+
+###############################################################################
+# ÇALIŞMIYOR MU? TEST EDİN!
+###############################################################################
+
+1. test.php sayfasını açın:
+   https://siteniz.com/test.php
+   veya
+   https://siteniz.com/hafriyat/test.php
+
+2. SITE_URL değerini kontrol edin:
+   ✅ DOĞRU: Tarayıcıdaki URL ile aynı olmalı
+   ❌ YANLIŞ: Farklıysa config.php'yi düzeltin
+
+3. Veritabanı bağlantısını kontrol edin:
+   ✅ "Veritabanı bağlantısı BAŞARILI" görmeli
+   ❌ Hata alıyorsanız DB bilgilerini kontrol edin
+
+###############################################################################
+# HIZLI DÜZELTİCİ: ŞU AN HANGİ DURUMDAYIM?
+###############################################################################
+
+Tarayıcıda şu adresi deneyin:
+   https://demosu.gen.tr
+
+✅ Ana sayfa açıldıysa → DURUM 1 (root)
+   config.php: define('SITE_URL', 'https://demosu.gen.tr');
+   .htaccess: RewriteBase /
+
+❌ 404 hatası aldıysanız, şunu deneyin:
+   https://demosu.gen.tr/hafriyat
+
+✅ Bu açıldıysa → DURUM 2 (alt klasör)
+   config.php: define('SITE_URL', 'https://demosu.gen.tr/hafriyat');
+   .htaccess: RewriteBase /hafriyat/
+
+###############################################################################
+# SORUN GİDERME
+###############################################################################
+
+❌ HTTP 500 HATASI:
+   → .htaccess dosyasını geçici olarak silin
+   → index.php'yi direkt açın
+   → Hangi hatayı aldığınızı bana söyleyin
+
+❌ SAYFALAR AÇILMIYOR (404):
+   → SITE_URL ve RewriteBase eşleşmiyor
+   → config.php ve .htaccess'i kontrol edin
+
+❌ VERİTABANI HATASI:
+   → config.php'de DB bilgilerini kontrol edin
+   → database.sql import edildi mi?
+
+❌ ADMİN PANEL AÇILMIYOR:
+   → https://siteniz.com/admin/login.php (direkt deneyin)
+   → Kullanıcı: admin / Şifre: admin123
+
+###############################################################################
