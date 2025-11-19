@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://kayseriemir.com/sitemap.xml
+Sitemap: https://kayseriemirhafriyat.com.tr/sitemap.xml
 
 # Disallow admin or private directories (if any in future)
 # Disallow: /admin/
