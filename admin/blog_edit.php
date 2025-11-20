@@ -21,6 +21,15 @@ if ($id > 0) {
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = (int)$_POST['id']; // POST'tan al
+
+    // KRİTİK: POST ID'sine göre blog yazısını YENİDEN YÜKLE!
+    $blog = $db->fetchOne("SELECT * FROM blog WHERE id = ?", [$id]);
+    if (!$blog) {
+        setFlash('error', 'Güncellenecek blog yazısı bulunamadı!');
+        header('Location: blog.php');
+        exit;
+    }
+
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
     $excerpt = clean($_POST['excerpt']);

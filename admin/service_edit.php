@@ -25,6 +25,14 @@ $tabs = $db->fetchAll("SELECT * FROM service_tabs WHERE status = 1 ORDER BY sort
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = (int)$_POST['id']; // POST'tan al, GET'ten değil!
 
+    // KRİTİK: POST ID'sine göre hizmeti YENİDEN YÜKLE!
+    $service = $db->fetchOne("SELECT * FROM services WHERE id = ?", [$id]);
+    if (!$service) {
+        setFlash('error', 'Güncellenecek hizmet bulunamadı!');
+        header('Location: services.php');
+        exit;
+    }
+
     // DEBUG - LOGLA!
     error_log("=== HİZMET GÜNCELLEME DEBUG ===");
     error_log("Güncellenen ID: " . $id);

@@ -21,6 +21,15 @@ if ($id > 0) {
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = (int)$_POST['id']; // POST'tan al
+
+    // KRİTİK: POST ID'sine göre slider'ı YENİDEN YÜKLE!
+    $slider = $db->fetchOne("SELECT * FROM sliders WHERE id = ?", [$id]);
+    if (!$slider) {
+        setFlash('error', 'Güncellenecek slider bulunamadı!');
+        header('Location: sliders.php');
+        exit;
+    }
+
     $title = clean($_POST['title']);
     $description = clean($_POST['description']);
     $button_text = clean($_POST['button_text']);
