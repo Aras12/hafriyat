@@ -9,18 +9,18 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // ═══════════════════════════════════════════════════════════════
-// VERİTABANI AYARLARI - BUNLARI DEĞİŞTİRİN! ←←←
+// VERİTABANI AYARLARI
 // ═══════════════════════════════════════════════════════════════
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'VERITABANI_ADINIZ');                // ← DEĞİŞTİR
-define('DB_USER', 'KULLANICI_ADINIZ');                 // ← DEĞİŞTİR
-define('DB_PASS', 'SIFRENIZ');                         // ← DEĞİŞTİR
+define('DB_NAME', 'emirhafriyat');
+define('DB_USER', 'root');
+define('DB_PASS', 'root');
 define('DB_CHARSET', 'utf8mb4');
 
 // ═══════════════════════════════════════════════════════════════
-// SİTE URL - DOMAIN ADRESİNİZİ YAZIN! ←←←
+// SİTE URL
 // ═══════════════════════════════════════════════════════════════
-define('SITE_URL', 'https://adanaotokokusu.com.tr');  // ← DEĞİŞTİR (varsa)
+define('SITE_URL', 'http://localhost/hafriyat');  // Sunucuya yüklerken değiştir
 
 // ═══════════════════════════════════════════════════════════════
 // DİĞER AYARLAR - DOKUNMAYIN!
