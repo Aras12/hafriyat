@@ -24,6 +24,13 @@ $tabs = $db->fetchAll("SELECT * FROM service_tabs WHERE status = 1 ORDER BY sort
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = (int)$_POST['id']; // POST'tan al, GET'ten değil!
+
+    // DEBUG - LOGLA!
+    error_log("=== HİZMET GÜNCELLEME DEBUG ===");
+    error_log("Güncellenen ID: " . $id);
+    error_log("POST ID: " . ($_POST['id'] ?? 'YOK'));
+    error_log("GET ID: " . ($_GET['id'] ?? 'YOK'));
+
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
     $short_description = clean($_POST['short_description']);
@@ -44,10 +51,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $sql = "UPDATE services SET title=?, slug=?, short_description=?, description=?, icon=?, image=?, features=?, tab_category=?, sort_order=?, status=?, meta_title=?, meta_description=?, meta_keywords=? WHERE id=?";
+
+    // DEBUG - SQL ve parametreleri logla
+    error_log("SQL: " . $sql);
+    error_log("Parametreler: " . json_encode(['title'=>$title, 'slug'=>$slug, 'id'=>$id]));
+
     if ($db->execute($sql, [$title, $slug, $short_description, $description, $icon, $image, $features, $tab_category, $sort_order, $status, $meta_title, $meta_description, $meta_keywords, $id])) {
-        setFlash('success', 'Hizmet güncellendi!');
+        error_log("✅ Güncelleme BAŞARILI - ID: " . $id);
+        setFlash('success', 'Hizmet güncellendi! (ID: ' . $id . ')');
         header('Location: services.php');
         exit;
+    } else {
+        error_log("❌ Güncelleme BAŞARISIZ - ID: " . $id);
+        setFlash('error', 'Hizmet güncellenirken hata oluştu!');
     }
 }
 
