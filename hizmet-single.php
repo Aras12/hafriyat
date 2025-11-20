@@ -6,7 +6,7 @@ $slug = $_GET['slug'] ?? '';
 $service = $db->fetchOne("SELECT * FROM services WHERE slug = ? AND status = 1", [$slug]);
 
 if (!$service) {
-    header('Location: ' . siteUrl('hizmetler'));
+    header('Location: ' . siteUrl('hizmetler.php'));
     exit;
 }
 

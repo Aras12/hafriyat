@@ -54,6 +54,46 @@ include 'includes/header.php';
     <?php endif; ?>
 </div>
 
+<!-- Neden Kayseri Emir Hafriyat? -->
+<section class="why-us-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Neden Kayseri Emir Hafriyat?</h2>
+            <p>Güvenilir, Hızlı ve Profesyonel Hizmet Anlayışı</p>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="why-us-card fade-in-up">
+                    <i class="fas fa-award"></i>
+                    <h4>25 Yıl Tecrübe</h4>
+                    <p>Çeyrek asırlık deneyimimizle sektörde öncüyüz</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="why-us-card fade-in-up">
+                    <i class="fas fa-clock"></i>
+                    <h4>Zamanında Teslimat</h4>
+                    <p>Projelerinizi zamanında başlatır ve teslim ederiz</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="why-us-card fade-in-up">
+                    <i class="fas fa-tools"></i>
+                    <h4>Modern Ekipman</h4>
+                    <p>En son teknoloji iş makineleri ve ekipmanlar</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="why-us-card fade-in-up">
+                    <i class="fas fa-users"></i>
+                    <h4>Uzman Kadro</h4>
+                    <p>Deneyimli operatörler ve profesyonel ekip</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Hizmetlerimiz Tabs -->
 <section class="services-section py-5">
     <div class="container">
@@ -91,7 +131,7 @@ include 'includes/header.php';
                                         <i class="<?= $service['icon'] ?> service-icon"></i>
                                         <h5><?= clean($service['title']) ?></h5>
                                         <p><?= clean($service['short_description']) ?></p>
-                                        <a href="<?= siteUrl('hizmet/' . $service['slug']) ?>" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
+                                        <a href="<?= siteUrl('hizmet-single.php?slug=' . $service['slug']) ?>" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
                                     </div>
                                 </div>
                             </div>
@@ -185,15 +225,29 @@ include 'includes/header.php';
                                 <small><i class="fas fa-calendar"></i> <?= formatDate($post['created_at'], 'd.m.Y') ?></small>
                                 <small><i class="fas fa-eye"></i> <?= $post['views'] ?></small>
                             </div>
-                            <a href="<?= siteUrl('blog/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm mt-3">Devamını Oku</a>
+                            <a href="<?= siteUrl('blog-single.php?slug=' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm mt-3">Devamını Oku</a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
         <div class="text-center mt-4">
-            <a href="<?= siteUrl('blog') ?>" class="btn btn-primary">Tüm Yazıları Gör</a>
+            <a href="<?= siteUrl('blog.php') ?>" class="btn btn-primary">Tüm Yazıları Gör</a>
         </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5" style="background: linear-gradient(135deg, var(--dark-gray), #2c2c2c);">
+    <div class="container text-center text-white">
+        <h2 class="mb-4">Projeniz İçin Hemen İletişime Geçin!</h2>
+        <p class="lead mb-4">Profesyonel hafriyat çözümleri için bize ulaşın. Ücretsiz fiyat teklifi alın.</p>
+        <a href="tel:<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '05317023538')) ?>" class="btn btn-primary btn-lg me-3 mb-2">
+            <i class="fas fa-phone"></i> <?= getMeta('company_phone', '0531 702 35 38') ?>
+        </a>
+        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '905317023538')) ?>" target="_blank" class="btn btn-lg mb-2" style="background: #25D366; color: white;">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
     </div>
 </section>
 

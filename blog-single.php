@@ -6,7 +6,7 @@ $slug = $_GET['slug'] ?? '';
 $blog = $db->fetchOne("SELECT * FROM blog WHERE slug = ? AND status = 1", [$slug]);
 
 if (!$blog) {
-    header('Location: ' . siteUrl('blog'));
+    header('Location: ' . siteUrl('blog.php'));
     exit;
 }
 
@@ -68,7 +68,7 @@ include 'includes/header.php';
                         <ul class="list-unstyled">
                             <?php foreach($recentPosts as $post): ?>
                                 <li class="mb-3">
-                                    <a href="<?= siteUrl('blog/' . $post['slug']) ?>"><?= clean($post['title']) ?></a>
+                                    <a href="<?= siteUrl('blog-single.php?slug=' . $post['slug']) ?>"><?= clean($post['title']) ?></a>
                                     <small class="d-block text-muted"><?= formatDate($post['created_at'], 'd.m.Y') ?></small>
                                 </li>
                             <?php endforeach; ?>

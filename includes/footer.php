@@ -16,12 +16,12 @@
                     <h5><i class="fas fa-link"></i> Hızlı Linkler</h5>
                     <ul class="list-unstyled footer-links">
                         <li><a href="<?= siteUrl() ?>">Ana Sayfa</a></li>
-                        <li><a href="<?= siteUrl('hakkimizda') ?>">Hakkımızda</a></li>
-                        <li><a href="<?= siteUrl('hizmetler') ?>">Hizmetlerimiz</a></li>
-                        <li><a href="<?= siteUrl('galeri') ?>">Galeri</a></li>
-                        <li><a href="<?= siteUrl('projeler') ?>">Projeler</a></li>
-                        <li><a href="<?= siteUrl('blog') ?>">Blog</a></li>
-                        <li><a href="<?= siteUrl('iletisim') ?>">İletişim</a></li>
+                        <li><a href="<?= siteUrl('hakkimizda.php') ?>">Hakkımızda</a></li>
+                        <li><a href="<?= siteUrl('hizmetler.php') ?>">Hizmetlerimiz</a></li>
+                        <li><a href="<?= siteUrl('galeri.php') ?>">Galeri</a></li>
+                        <li><a href="<?= siteUrl('projeler.php') ?>">Projeler</a></li>
+                        <li><a href="<?= siteUrl('blog.php') ?>">Blog</a></li>
+                        <li><a href="<?= siteUrl('iletisim.php') ?>">İletişim</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -40,10 +40,15 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '')) ?>" class="whatsapp-float" target="_blank" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Quick Contact Buttons -->
+    <div class="quick-contact">
+        <a href="tel:<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '05317023538')) ?>" class="contact-btn phone">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '905317023538')) ?>" target="_blank" class="contact-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= asset('assets/js/main.js') ?>"></script>

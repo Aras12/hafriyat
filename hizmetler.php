@@ -38,7 +38,7 @@ include 'includes/header.php';
                             <i class="<?= $service['icon'] ?> service-icon"></i>
                             <h5><?= clean($service['title']) ?></h5>
                             <p><?= clean($service['short_description']) ?></p>
-                            <a href="<?= siteUrl('hizmet/' . $service['slug']) ?>" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
+                            <a href="<?= siteUrl('hizmet-single.php?slug=' . $service['slug']) ?>" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
                         </div>
                     </div>
                 </div>
