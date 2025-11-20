@@ -20,6 +20,7 @@ if ($id > 0) {
 
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)$_POST['id']; // POST'tan al
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
     $excerpt = clean($_POST['excerpt']);
@@ -60,6 +61,7 @@ include 'includes/header.php';
     </div>
     <div class="card-body">
         <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $blog['id'] ?>">
             <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">

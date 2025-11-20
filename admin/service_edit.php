@@ -23,6 +23,7 @@ $tabs = $db->fetchAll("SELECT * FROM service_tabs WHERE status = 1 ORDER BY sort
 
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)$_POST['id']; // POST'tan al, GET'ten değil!
     $title = clean($_POST['title']);
     $slug = createSlug($_POST['slug'] ?: $title);
     $short_description = clean($_POST['short_description']);
@@ -58,6 +59,7 @@ include 'includes/header.php';
     <div class="card-header"><i class="fas fa-edit"></i> Hizmet Düzenle</div>
     <div class="card-body">
         <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $service['id'] ?>">
             <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3"><label>Başlık *</label><input type="text" name="title" id="title" class="form-control" value="<?=clean($service['title'])?>" required></div>

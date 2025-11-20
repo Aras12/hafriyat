@@ -20,6 +20,7 @@ if ($id > 0) {
 
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)$_POST['id']; // POST'tan al
     $title = clean($_POST['title']);
     $description = clean($_POST['description']);
     $button_text = clean($_POST['button_text']);
@@ -61,6 +62,7 @@ include 'includes/header.php';
     </div>
     <div class="card-body">
         <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $slider['id'] ?>">
             <div class="row">
                 <div class="col-md-8">
                     <div class="mb-3">

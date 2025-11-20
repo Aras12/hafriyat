@@ -20,6 +20,7 @@ if ($id > 0) {
 
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)$_POST['id']; // POST'tan al
     $client_name = clean($_POST['client_name']);
     $client_company = clean($_POST['client_company']);
     $comment = clean($_POST['comment']);
@@ -42,6 +43,7 @@ include 'includes/header.php';
     <div class="card-header"><i class="fas fa-edit"></i> Yorum Düzenle</div>
     <div class="card-body">
         <form method="POST">
+            <input type="hidden" name="id" value="<?= $t['id'] ?>">
             <div class="mb-3"><label>Müşteri Adı *</label><input type="text" name="client_name" class="form-control" value="<?=clean($t['client_name'])?>" required></div>
             <div class="mb-3"><label>Firma</label><input type="text" name="client_company" class="form-control" value="<?=clean($t['client_company'])?>"></div>
             <div class="mb-3"><label>Yorum *</label><textarea name="comment" class="form-control" rows="4" required><?=clean($t['comment'])?></textarea></div>

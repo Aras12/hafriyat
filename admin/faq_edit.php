@@ -20,6 +20,7 @@ if ($id > 0) {
 
 // POST processing BEFORE header include
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)$_POST['id']; // POST'tan al
     $question = clean($_POST['question']);
     $answer = clean($_POST['answer']);
     $sort_order = (int)$_POST['sort_order'];
@@ -39,6 +40,7 @@ include 'includes/header.php';
     <div class="card-header"><i class="fas fa-edit"></i> SSS Düzenle</div>
     <div class="card-body">
         <form method="POST">
+            <input type="hidden" name="id" value="<?= $faq['id'] ?>">
             <div class="mb-3"><label>Soru *</label><input type="text" name="question" class="form-control" value="<?=clean($faq['question'])?>" required></div>
             <div class="mb-3"><label>Cevap *</label><textarea name="answer" class="form-control" rows="4" required><?=clean($faq['answer'])?></textarea></div>
             <div class="mb-3"><label>Sıra</label><input type="number" name="sort_order" class="form-control" value="<?=$faq['sort_order']?>"></div>
