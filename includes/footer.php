@@ -16,12 +16,12 @@
                     <h5><i class="fas fa-link"></i> Hızlı Linkler</h5>
                     <ul class="list-unstyled footer-links">
                         <li><a href="<?= siteUrl() ?>">Ana Sayfa</a></li>
-                        <li><a href="<?= siteUrl('hakkimizda.php') ?>">Hakkımızda</a></li>
-                        <li><a href="<?= siteUrl('hizmetler.php') ?>">Hizmetlerimiz</a></li>
-                        <li><a href="<?= siteUrl('galeri.php') ?>">Galeri</a></li>
-                        <li><a href="<?= siteUrl('projeler.php') ?>">Projeler</a></li>
-                        <li><a href="<?= siteUrl('blog.php') ?>">Blog</a></li>
-                        <li><a href="<?= siteUrl('iletisim.php') ?>">İletişim</a></li>
+                        <li><a href="<?= siteUrl('hakkimizda') ?>">Hakkımızda</a></li>
+                        <li><a href="<?= siteUrl('hizmetler') ?>">Hizmetlerimiz</a></li>
+                        <li><a href="<?= siteUrl('galeri') ?>">Galeri</a></li>
+                        <li><a href="<?= siteUrl('projeler') ?>">Projeler</a></li>
+                        <li><a href="<?= siteUrl('blog') ?>">Blog</a></li>
+                        <li><a href="<?= siteUrl('iletisim') ?>">İletişim</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

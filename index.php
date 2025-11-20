@@ -131,7 +131,7 @@ include 'includes/header.php';
                                         <i class="<?= $service['icon'] ?> service-icon"></i>
                                         <h5><?= clean($service['title']) ?></h5>
                                         <p><?= clean($service['short_description']) ?></p>
-                                        <a href="<?= siteUrl('hizmet-single.php?slug=' . $service['slug']) ?>" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
+                                        <a href="<?= siteUrl('hizmet/' . $service['slug']) ?>" class="btn btn-outline-primary btn-sm">Detaylı Bilgi</a>
                                     </div>
                                 </div>
                             </div>
@@ -225,14 +225,14 @@ include 'includes/header.php';
                                 <small><i class="fas fa-calendar"></i> <?= formatDate($post['created_at'], 'd.m.Y') ?></small>
                                 <small><i class="fas fa-eye"></i> <?= $post['views'] ?></small>
                             </div>
-                            <a href="<?= siteUrl('blog-single.php?slug=' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm mt-3">Devamını Oku</a>
+                            <a href="<?= siteUrl('blog/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm mt-3">Devamını Oku</a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
         <div class="text-center mt-4">
-            <a href="<?= siteUrl('blog.php') ?>" class="btn btn-primary">Tüm Yazıları Gör</a>
+            <a href="<?= siteUrl('blog') ?>" class="btn btn-primary">Tüm Yazıları Gör</a>
         </div>
     </div>
 </section>

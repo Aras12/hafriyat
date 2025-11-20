@@ -6,7 +6,7 @@ $slug = $_GET['slug'] ?? '';
 $blog = $db->fetchOne("SELECT * FROM blog WHERE slug = ? AND status = 1", [$slug]);
 
 if (!$blog) {
-    header('Location: ' . siteUrl('blog.php'));
+    header('Location: ' . siteUrl('blog'));
     exit;
 }
 

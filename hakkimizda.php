@@ -157,7 +157,7 @@ include 'includes/header.php';
             <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '905317023538')) ?>" target="_blank" class="btn btn-lg mb-2" style="background: #25D366; color: white; font-weight: bold;">
                 <i class="fab fa-whatsapp"></i> WhatsApp ile İletişim
             </a>
-            <a href="<?= siteUrl('iletisim.php') ?>" class="btn btn-outline-light btn-lg mb-2">
+            <a href="<?= siteUrl('iletisim') ?>" class="btn btn-outline-light btn-lg mb-2">
                 <i class="fas fa-envelope"></i> İletişim Formu
             </a>
         </div>

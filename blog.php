@@ -50,7 +50,7 @@ include 'includes/header.php';
                                 <small><i class="fas fa-calendar"></i> <?= formatDate($blog['created_at'], 'd.m.Y') ?></small>
                                 <small><i class="fas fa-eye"></i> <?= $blog['views'] ?></small>
                             </div>
-                            <a href="<?= siteUrl('blog-single.php?slug=' . $blog['slug']) ?>" class="btn btn-outline-primary btn-sm mt-3">Devamını Oku</a>
+                            <a href="<?= siteUrl('blog/' . $blog['slug']) ?>" class="btn btn-outline-primary btn-sm mt-3">Devamını Oku</a>
                         </div>
                     </div>
                 </div>

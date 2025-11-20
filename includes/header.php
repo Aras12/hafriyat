@@ -51,21 +51,21 @@ $services = $db->fetchAll("SELECT * FROM services WHERE status = 1 ORDER BY sort
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link <?= isActive('index') ?>" href="<?= siteUrl() ?>">Ana Sayfa</a></li>
-                    <li class="nav-item"><a class="nav-link <?= isActive('hakkimizda') ?>" href="<?= siteUrl('hakkimizda.php') ?>">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link <?= isActive('hakkimizda') ?>" href="<?= siteUrl('hakkimizda') ?>">Hakkımızda</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="hizmetlerDropdown" role="button" data-bs-toggle="dropdown">Hizmetler</a>
                         <ul class="dropdown-menu">
                             <?php foreach($services as $service): ?>
-                                <li><a class="dropdown-item" href="<?= siteUrl('hizmet-single.php?slug=' . $service['slug']) ?>"><?= clean($service['title']) ?></a></li>
+                                <li><a class="dropdown-item" href="<?= siteUrl('hizmet/' . $service['slug']) ?>"><?= clean($service['title']) ?></a></li>
                             <?php endforeach; ?>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="<?= siteUrl('hizmetler.php') ?>">Tüm Hizmetler</a></li>
+                            <li><a class="dropdown-item" href="<?= siteUrl('hizmetler') ?>">Tüm Hizmetler</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link <?= isActive('galeri') ?>" href="<?= siteUrl('galeri.php') ?>">Galeri</a></li>
-                    <li class="nav-item"><a class="nav-link <?= isActive('projeler') ?>" href="<?= siteUrl('projeler.php') ?>">Projeler</a></li>
-                    <li class="nav-item"><a class="nav-link <?= isActive('blog') ?>" href="<?= siteUrl('blog.php') ?>">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link <?= isActive('iletisim') ?>" href="<?= siteUrl('iletisim.php') ?>">İletişim</a></li>
+                    <li class="nav-item"><a class="nav-link <?= isActive('galeri') ?>" href="<?= siteUrl('galeri') ?>">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link <?= isActive('projeler') ?>" href="<?= siteUrl('projeler') ?>">Projeler</a></li>
+                    <li class="nav-item"><a class="nav-link <?= isActive('blog') ?>" href="<?= siteUrl('blog') ?>">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link <?= isActive('iletisim') ?>" href="<?= siteUrl('iletisim') ?>">İletişim</a></li>
                 </ul>
             </div>
         </div>
