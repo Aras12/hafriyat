@@ -61,7 +61,7 @@ include 'includes/header.php';
         <i class="fas fa-edit"></i> Slider Düzenle
     </div>
     <div class="card-body">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="slider_edit.php?id=<?= $slider['id'] ?>" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $slider['id'] ?>">
             <div class="row">
                 <div class="col-md-8">

@@ -39,7 +39,7 @@ include 'includes/header.php';
 <div class="card">
     <div class="card-header"><i class="fas fa-edit"></i> SSS Düzenle</div>
     <div class="card-body">
-        <form method="POST">
+        <form method="POST" action="faq_edit.php?id=<?= $faq['id'] ?>">
             <input type="hidden" name="id" value="<?= $faq['id'] ?>">
             <div class="mb-3"><label>Soru *</label><input type="text" name="question" class="form-control" value="<?=clean($faq['question'])?>" required></div>
             <div class="mb-3"><label>Cevap *</label><textarea name="answer" class="form-control" rows="4" required><?=clean($faq['answer'])?></textarea></div>

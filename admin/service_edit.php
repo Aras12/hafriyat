@@ -74,7 +74,7 @@ include 'includes/header.php';
 <div class="card">
     <div class="card-header"><i class="fas fa-edit"></i> Hizmet Düzenle</div>
     <div class="card-body">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="service_edit.php?id=<?= $service['id'] ?>" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $service['id'] ?>">
             <div class="row">
                 <div class="col-md-9">

@@ -42,7 +42,7 @@ include 'includes/header.php';
 <div class="card">
     <div class="card-header"><i class="fas fa-edit"></i> Yorum Düzenle</div>
     <div class="card-body">
-        <form method="POST">
+        <form method="POST" action="testimonial_edit.php?id=<?= $t['id'] ?>">
             <input type="hidden" name="id" value="<?= $t['id'] ?>">
             <div class="mb-3"><label>Müşteri Adı *</label><input type="text" name="client_name" class="form-control" value="<?=clean($t['client_name'])?>" required></div>
             <div class="mb-3"><label>Firma</label><input type="text" name="client_company" class="form-control" value="<?=clean($t['client_company'])?>"></div>

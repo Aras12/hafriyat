@@ -60,7 +60,7 @@ include 'includes/header.php';
         <i class="fas fa-edit"></i> Blog Düzenle
     </div>
     <div class="card-body">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="blog_edit.php?id=<?= $blog['id'] ?>" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $blog['id'] ?>">
             <div class="row">
                 <div class="col-md-9">
