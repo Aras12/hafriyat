@@ -1,8 +1,9 @@
 <?php
-$pageTitle = 'Proje Yönetimi';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
-// DELETE
+// DELETE (header include'dan ÖNCE)
 if(isset($_GET['delete'])){
     $id=(int)$_GET['delete'];
     $p=$db->fetchOne("SELECT image FROM projects WHERE id=?",[$id]);
@@ -13,7 +14,7 @@ if(isset($_GET['delete'])){
     exit;
 }
 
-// POST - ADD OR EDIT
+// POST - ADD OR EDIT (header include'dan ÖNCE)
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $id=(int)($_POST['id']??0);
     $title=clean($_POST['title']);
@@ -33,24 +34,28 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             if($image)deleteImage($image);
             $image=uploadImage($_FILES['image'],'projeler');
         }
-        $db->execute("UPDATE projects SET title=?,description=?,location=?,client=?,completion_date=?,image=?,category=?,sort_order=?,status=? WHERE id=?",
+        $result = $db->execute("UPDATE projects SET title=?,description=?,location=?,client=?,completion_date=?,image=?,category=?,sort_order=?,status=? WHERE id=?",
             [$title,$description,$location,$client,$completion_date,$image,$category,$sort_order,$status,$id]);
-        setFlash('success','Proje güncellendi!');
+        setFlash($result ? 'success' : 'error', $result ? 'Proje güncellendi!' : 'Proje güncellenirken hata oluştu!');
     }else{
         // ADD
         $image='';
         if(isset($_FILES['image'])&&$_FILES['image']['error']===UPLOAD_ERR_OK){
             $image=uploadImage($_FILES['image'],'projeler');
         }
-        $db->execute("INSERT INTO projects(title,description,location,client,completion_date,image,category,sort_order,status)VALUES(?,?,?,?,?,?,?,?,?)",
+        $result = $db->execute("INSERT INTO projects(title,description,location,client,completion_date,image,category,sort_order,status)VALUES(?,?,?,?,?,?,?,?,?)",
             [$title,$description,$location,$client,$completion_date,$image,$category,$sort_order,$status]);
-        setFlash('success','Proje eklendi!');
+        setFlash($result ? 'success' : 'error', $result ? 'Proje eklendi!' : 'Proje eklenirken hata oluştu!');
     }
     header('Location: projects.php');
     exit;
 }
 
 $projects=$db->fetchAll("SELECT * FROM projects ORDER BY sort_order ASC");
+
+// ŞİMDİ header include et
+$pageTitle = 'Proje Yönetimi';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">

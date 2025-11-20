@@ -1,19 +1,33 @@
 <?php
-$pageTitle = 'Sayfa İçerikleri';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// POST işlemi ÖNCE yapılmalı (header include'dan önce)
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $page_key=clean($_POST['page_key']);
     $content=$_POST['content'];
     $meta_title=clean($_POST['meta_title']);
     $meta_description=clean($_POST['meta_description']);
     $meta_keywords=clean($_POST['meta_keywords']);
-    $db->execute("UPDATE pages SET content=?,meta_title=?,meta_description=?,meta_keywords=? WHERE page_key=?",
+
+    $result = $db->execute("UPDATE pages SET content=?,meta_title=?,meta_description=?,meta_keywords=? WHERE page_key=?",
         [$content,$meta_title,$meta_description,$meta_keywords,$page_key]);
-    setFlash('success','Sayfa güncellendi!');
+
+    if($result) {
+        setFlash('success','Sayfa güncellendi!');
+    } else {
+        setFlash('error','Sayfa güncellenirken hata oluştu!');
+    }
     header('Location: pages.php');
     exit;
 }
+
 $pages=$db->fetchAll("SELECT * FROM pages ORDER BY id");
+
+// Şimdi header include et
+$pageTitle = 'Sayfa İçerikleri';
+include 'includes/header.php';
 ?>
 <div class="row g-3">
     <?php foreach($pages as $page): ?>

@@ -1,8 +1,47 @@
 <?php
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
+
+// DELETE (header include'dan ÖNCE)
+if(isset($_GET['delete'])){
+    $id=(int)$_GET['delete'];
+    $g=$db->fetchOne("SELECT image FROM gallery WHERE id=?",[$id]);
+    if($g&&$g['image'])deleteImage($g['image']);
+    $db->execute("DELETE FROM gallery WHERE id=?",[$id]);
+    setFlash('success','Görsel silindi!');
+    header('Location: gallery.php');
+    exit;
+}
+
+// POST (header include'dan ÖNCE)
+if($_SERVER['REQUEST_METHOD']==='POST'){
+    $title=clean($_POST['title']);
+    $category=clean($_POST['category']);
+    $description=clean($_POST['description']);
+    $sort_order=(int)$_POST['sort_order'];
+    $image='';
+    if(isset($_FILES['image'])&&$_FILES['image']['error']===UPLOAD_ERR_OK){
+        $image=uploadImage($_FILES['image'],'galeri');
+        if($image){
+            $result = $db->execute("INSERT INTO gallery(title,description,image,category,sort_order,status)VALUES(?,?,?,?,?,1)",
+                [$title,$description,$image,$category,$sort_order]);
+            setFlash($result ? 'success' : 'error', $result ? 'Görsel eklendi!' : 'Görsel eklenirken hata oluştu!');
+        } else {
+            setFlash('error', 'Görsel yüklenirken hata oluştu!');
+        }
+    } else {
+        setFlash('error', 'Lütfen bir görsel seçin!');
+    }
+    header('Location: gallery.php');
+    exit;
+}
+
+$gallery=$db->fetchAll("SELECT * FROM gallery ORDER BY sort_order ASC");
+
+// ŞİMDİ header include et
 $pageTitle = 'Galeri Yönetimi';
 include 'includes/header.php';
-if(isset($_GET['delete'])){$id=(int)$_GET['delete'];$g=$db->fetchOne("SELECT image FROM gallery WHERE id=?",[$id]);if($g&&$g['image'])deleteImage($g['image']);$db->execute("DELETE FROM gallery WHERE id=?",[$id]);setFlash('success','Görsel silindi!');header('Location: gallery.php');exit;}
-$gallery=$db->fetchAll("SELECT * FROM gallery ORDER BY sort_order ASC");
 ?>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -51,23 +90,4 @@ $gallery=$db->fetchAll("SELECT * FROM gallery ORDER BY sort_order ASC");
     </div>
 </div>
 
-<?php
-if($_SERVER['REQUEST_METHOD']==='POST'){
-    $title=clean($_POST['title']);
-    $category=clean($_POST['category']);
-    $description=clean($_POST['description']);
-    $sort_order=(int)$_POST['sort_order'];
-    $image='';
-    if(isset($_FILES['image'])&&$_FILES['image']['error']===UPLOAD_ERR_OK){
-        $image=uploadImage($_FILES['image'],'galeri');
-        if($image){
-            $db->execute("INSERT INTO gallery(title,description,image,category,sort_order,status)VALUES(?,?,?,?,?,1)",
-                [$title,$description,$image,$category,$sort_order]);
-            setFlash('success','Görsel eklendi!');
-            header('Location: gallery.php');
-            exit;
-        }
-    }
-}
-include 'includes/footer.php';
-?>
+<?php include 'includes/footer.php'; ?>

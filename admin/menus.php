@@ -1,8 +1,9 @@
 <?php
-$pageTitle = 'Menü Yönetimi';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
-// DELETE
+// DELETE (header include'dan ÖNCE)
 if(isset($_GET['delete'])){
     $id=(int)$_GET['delete'];
     $db->execute("DELETE FROM menus WHERE id=?",[$id]);
@@ -11,7 +12,7 @@ if(isset($_GET['delete'])){
     exit;
 }
 
-// POST - ADD OR EDIT
+// POST - ADD OR EDIT (header include'dan ÖNCE)
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $id=(int)($_POST['id']??0);
     $title=clean($_POST['title']);
@@ -25,20 +26,24 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
     if($id>0){
         // EDIT
-        $db->execute("UPDATE menus SET title=?,url=?,target=?,icon=?,parent_id=?,position=?,sort_order=?,status=? WHERE id=?",
+        $result = $db->execute("UPDATE menus SET title=?,url=?,target=?,icon=?,parent_id=?,position=?,sort_order=?,status=? WHERE id=?",
             [$title,$url,$target,$icon,$parent_id,$position,$sort_order,$status,$id]);
-        setFlash('success','Menü güncellendi!');
+        setFlash($result ? 'success' : 'error', $result ? 'Menü güncellendi!' : 'Menü güncellenirken hata oluştu!');
     }else{
         // ADD
-        $db->execute("INSERT INTO menus(title,url,target,icon,parent_id,position,sort_order,status)VALUES(?,?,?,?,?,?,?,?)",
+        $result = $db->execute("INSERT INTO menus(title,url,target,icon,parent_id,position,sort_order,status)VALUES(?,?,?,?,?,?,?,?)",
             [$title,$url,$target,$icon,$parent_id,$position,$sort_order,$status]);
-        setFlash('success','Menü eklendi!');
+        setFlash($result ? 'success' : 'error', $result ? 'Menü eklendi!' : 'Menü eklenirken hata oluştu!');
     }
     header('Location: menus.php');
     exit;
 }
 
 $menus=$db->fetchAll("SELECT * FROM menus ORDER BY position ASC, sort_order ASC");
+
+// ŞİMDİ header include et
+$pageTitle = 'Menü Yönetimi';
+include 'includes/header.php';
 ?>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
