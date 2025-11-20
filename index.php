@@ -55,44 +55,46 @@ include 'includes/header.php';
 </div>
 
 <!-- Neden Kayseri Emir Hafriyat? -->
+<?php if(getMeta('why_us_enabled', '1') == '1'): ?>
 <section class="why-us-section">
     <div class="container">
         <div class="section-title">
-            <h2>Neden Kayseri Emir Hafriyat?</h2>
-            <p>Güvenilir, Hızlı ve Profesyonel Hizmet Anlayışı</p>
+            <h2><?= clean(getMeta('why_us_title', 'Neden Kayseri Emir Hafriyat?')) ?></h2>
+            <p><?= clean(getMeta('why_us_subtitle', 'Güvenilir, Hızlı ve Profesyonel Hizmet Anlayışı')) ?></p>
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="why-us-card fade-in-up">
-                    <i class="fas fa-award"></i>
-                    <h4>25 Yıl Tecrübe</h4>
-                    <p>Çeyrek asırlık deneyimimizle sektörde öncüyüz</p>
+                    <i class="<?= clean(getMeta('why_card1_icon', 'fas fa-award')) ?>"></i>
+                    <h4><?= clean(getMeta('why_card1_title', '25 Yıl Tecrübe')) ?></h4>
+                    <p><?= clean(getMeta('why_card1_text', 'Çeyrek asırlık deneyimimizle sektörde öncüyüz')) ?></p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="why-us-card fade-in-up">
-                    <i class="fas fa-clock"></i>
-                    <h4>Zamanında Teslimat</h4>
-                    <p>Projelerinizi zamanında başlatır ve teslim ederiz</p>
+                    <i class="<?= clean(getMeta('why_card2_icon', 'fas fa-clock')) ?>"></i>
+                    <h4><?= clean(getMeta('why_card2_title', 'Zamanında Teslimat')) ?></h4>
+                    <p><?= clean(getMeta('why_card2_text', 'Projelerinizi zamanında başlatır ve teslim ederiz')) ?></p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="why-us-card fade-in-up">
-                    <i class="fas fa-tools"></i>
-                    <h4>Modern Ekipman</h4>
-                    <p>En son teknoloji iş makineleri ve ekipmanlar</p>
+                    <i class="<?= clean(getMeta('why_card3_icon', 'fas fa-tools')) ?>"></i>
+                    <h4><?= clean(getMeta('why_card3_title', 'Modern Ekipman')) ?></h4>
+                    <p><?= clean(getMeta('why_card3_text', 'En son teknoloji iş makineleri ve ekipmanlar')) ?></p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="why-us-card fade-in-up">
-                    <i class="fas fa-users"></i>
-                    <h4>Uzman Kadro</h4>
-                    <p>Deneyimli operatörler ve profesyonel ekip</p>
+                    <i class="<?= clean(getMeta('why_card4_icon', 'fas fa-users')) ?>"></i>
+                    <h4><?= clean(getMeta('why_card4_title', 'Uzman Kadro')) ?></h4>
+                    <p><?= clean(getMeta('why_card4_text', 'Deneyimli operatörler ve profesyonel ekip')) ?></p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- Hizmetlerimiz Tabs -->
 <section class="services-section py-5">

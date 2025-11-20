@@ -117,8 +117,11 @@ include 'includes/header.php';
                         <textarea name="message" class="form-control" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg">
-                        <i class="fas fa-paper-plane"></i> Gönder
+                        <i class="fas fa-paper-plane"></i> Mesaj Gönder
                     </button>
+                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', getMeta('company_phone', '905317023538')) ?>" target="_blank" class="btn btn-lg ms-2" style="background: #25D366; color: white;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </form>
             </div>
             <div class="col-lg-6">

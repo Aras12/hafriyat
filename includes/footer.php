@@ -5,23 +5,23 @@
                 <div class="col-md-4">
                     <h5><i class="fas fa-truck-monster"></i> <?= getMeta('site_title', 'Emir Hafriyat') ?></h5>
                     <p><?= getMeta('company_experience', '25') ?> yıllık tecrübemizle Kayseri ve çevresinde profesyonel hafriyat ve iş makinesi kiralama hizmetleri sunuyoruz.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h5><i class="fas fa-link"></i> Hızlı Linkler</h5>
                     <ul class="list-unstyled footer-links">
-                        <li><a href="<?= siteUrl() ?>">Ana Sayfa</a></li>
-                        <li><a href="<?= siteUrl('hakkimizda') ?>">Hakkımızda</a></li>
-                        <li><a href="<?= siteUrl('hizmetler') ?>">Hizmetlerimiz</a></li>
-                        <li><a href="<?= siteUrl('galeri') ?>">Galeri</a></li>
-                        <li><a href="<?= siteUrl('projeler') ?>">Projeler</a></li>
-                        <li><a href="<?= siteUrl('blog') ?>">Blog</a></li>
-                        <li><a href="<?= siteUrl('iletisim') ?>">İletişim</a></li>
+                        <li><a href="<?= siteUrl() ?>"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                        <li><a href="<?= siteUrl('hakkimizda') ?>"><i class="fas fa-info-circle"></i> Hakkımızda</a></li>
+                        <li><a href="<?= siteUrl('hizmetler') ?>"><i class="fas fa-cogs"></i> Hizmetlerimiz</a></li>
+                        <li><a href="<?= siteUrl('galeri') ?>"><i class="fas fa-images"></i> Galeri</a></li>
+                        <li><a href="<?= siteUrl('projeler') ?>"><i class="fas fa-project-diagram"></i> Projeler</a></li>
+                        <li><a href="<?= siteUrl('blog') ?>"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="<?= siteUrl('iletisim') ?>"><i class="fas fa-envelope"></i> İletişim</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

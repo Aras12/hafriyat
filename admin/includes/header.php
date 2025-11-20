@@ -187,7 +187,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
                 <span class="text-muted me-3">
                     <i class="fas fa-user"></i> <?= $_SESSION['admin_name'] ?>
                 </span>
-                <a href="../index.php" target="_blank" class="btn btn-sm btn-outline-primary">
+                <a href="<?= siteUrl() ?>" target="_blank" class="btn btn-sm btn-outline-primary">
                     <i class="fas fa-eye"></i> Siteyi Görüntüle
                 </a>
             </div>

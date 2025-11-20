@@ -867,3 +867,22 @@ WHERE `slug` = 'hafriyat-nedir-ne-zaman-gerekli';
 -- ============================================================
 COMMIT;
 -- Veritabanı kurulumu tamamlandı!
+
+-- Why Us Section Settings
+INSERT INTO `settings` (`setting_key`, `setting_value`) VALUES
+('why_us_enabled', '1'),
+('why_us_title', 'Neden Kayseri Emir Hafriyat?'),
+('why_us_subtitle', 'Güvenilir, Hızlı ve Profesyonel Hizmet Anlayışı'),
+('why_card1_icon', 'fas fa-award'),
+('why_card1_title', '25 Yıl Tecrübe'),
+('why_card1_text', 'Çeyrek asırlık deneyimimizle sektörde öncüyüz'),
+('why_card2_icon', 'fas fa-clock'),
+('why_card2_title', 'Zamanında Teslimat'),
+('why_card2_text', 'Projelerinizi zamanında başlatır ve teslim ederiz'),
+('why_card3_icon', 'fas fa-tools'),
+('why_card3_title', 'Modern Ekipman'),
+('why_card3_text', 'Son teknoloji iş makineleriyle hizmet veriyoruz'),
+('why_card4_icon', 'fas fa-users'),
+('why_card4_title', 'Uzman Kadro'),
+('why_card4_text', 'Deneyimli ve sertifikalı operatörlerimizle çalışıyoruz')
+ON DUPLICATE KEY UPDATE setting_value=VALUES(setting_value);
