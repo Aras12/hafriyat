@@ -306,10 +306,10 @@ CREATE TABLE `contact_messages` (
 
 -- --------------------------------------------------------
 
-COMMIT;
 -- ============================================================
 -- BLOG İÇERİK GÜNCELLEMELERİ
 -- Kayseri Emir Hafriyat - Blog Yazıları Tam İçerik
+-- Not: UPDATE'ler INSERT'lerden sonra çalışacak
 -- ============================================================
 
 -- 1. Doğru Ekskavatör Seçimi Nasıl Yapılır?
@@ -863,3 +863,7 @@ WHERE `slug` = 'hafriyat-nedir-ne-zaman-gerekli';
 -- ============================================================
 -- Bu SQL dosyasını çalıştırdıktan sonra blog içerikleri tam olarak güncellenmiş olacaktır.
 -- Tüm HTML içerik korunmuş, .html referansları kaldırılmış ve SQL için düzgün şekilde escape edilmiştir.
+
+-- ============================================================
+COMMIT;
+-- Veritabanı kurulumu tamamlandı!
