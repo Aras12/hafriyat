@@ -1,6 +1,7 @@
 <?php
-$pageTitle = 'Site Ayarları';
-include 'includes/header.php';
+require_once '../config.php';
+requireAdmin();
+$db = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $settings = $_POST['setting'] ?? [];
@@ -41,6 +42,9 @@ $settings = [];
 foreach ($currentSettings as $setting) {
     $settings[$setting['setting_key']] = $setting['setting_value'];
 }
+
+$pageTitle = 'Site Ayarları';
+include 'includes/header.php';
 ?>
 
 <div class="row">
@@ -51,91 +55,99 @@ foreach ($currentSettings as $setting) {
             </div>
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data">
-                    <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+
+                    <ul class="nav nav-tabs mb-4" role="tablist">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general" type="button">
-                                <i class="fas fa-home"></i> Genel Ayarlar
-                            </button>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#genel">Genel Ayarlar</a>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact" type="button">
-                                <i class="fas fa-phone"></i> İletişim Bilgileri
-                            </button>
+                            <a class="nav-link" data-bs-toggle="tab" href="#iletisim">İletişim Bilgileri</a>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#smtp" type="button">
-                                <i class="fas fa-envelope"></i> SMTP Ayarları
-                            </button>
+                            <a class="nav-link" data-bs-toggle="tab" href="#seo">SEO Ayarları</a>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#seo" type="button">
-                                <i class="fas fa-search"></i> SEO Ayarları
-                            </button>
+                            <a class="nav-link" data-bs-toggle="tab" href="#smtp">SMTP Ayarları</a>
                         </li>
                     </ul>
 
-                    <div class="tab-content p-3" id="settingsTabsContent">
+                    <div class="tab-content">
                         <!-- Genel Ayarlar -->
-                        <div class="tab-pane fade show active" id="general">
+                        <div class="tab-pane fade show active" id="genel">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Site Başlığı</label>
-                                        <input type="text" name="setting[site_title]" class="form-control"
-                                               value="<?= clean($settings['site_title'] ?? '') ?>">
+                                        <input type="text" name="setting[site_title]" class="form-control" value="<?= clean($settings['site_title'] ?? '') ?>">
                                     </div>
-
+                                </div>
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Mevcut Logo</label>
-                                        <?php if (isset($settings['site_logo'])): ?>
-                                            <div class="mb-2">
-                                                <img src="../<?= $settings['site_logo'] ?>" alt="Logo" style="max-width:200px;">
-                                            </div>
-                                        <?php endif; ?>
-                                        <input type="file" name="logo" class="form-control" accept="image/*">
-                                        <small class="text-muted">Yeni logo yüklemek için seçin</small>
+                                        <label class="form-label">Firma Tecrübesi (Yıl)</label>
+                                        <input type="number" name="setting[company_experience]" class="form-control" value="<?= clean($settings['company_experience'] ?? '25') ?>">
                                     </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Site Logosu</label>
+                                        <input type="file" name="logo" class="form-control" accept="image/*">
+                                        <?php if (!empty($settings['site_logo']) && strpos($settings['site_logo'], 'data:image') === false): ?>
+                                            <img src="<?= siteUrl($settings['site_logo']) ?>" alt="Logo" class="mt-2" style="max-height: 80px;">
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Favicon</label>
                                         <input type="file" name="favicon" class="form-control" accept="image/*">
-                                        <small class="text-muted">Site simgesi (ICO veya PNG)</small>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Deneyim Yılı</label>
-                                        <input type="number" name="setting[company_experience]" class="form-control"
-                                               value="<?= clean($settings['company_experience'] ?? '25') ?>">
+                                        <small class="text-muted">Tarayıcı sekmesinde görünen ikon (16x16px veya 32x32px)</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- İletişim Bilgileri -->
-                        <div class="tab-pane fade" id="contact">
+                        <div class="tab-pane fade" id="iletisim">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Telefon</label>
-                                        <input type="text" name="setting[company_phone]" class="form-control"
-                                               value="<?= clean($settings['company_phone'] ?? '') ?>">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">E-posta</label>
-                                        <input type="email" name="setting[company_email]" class="form-control"
-                                               value="<?= clean($settings['company_email'] ?? '') ?>">
+                                        <input type="text" name="setting[company_phone]" class="form-control" value="<?= clean($settings['company_phone'] ?? '') ?>">
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Adres</label>
-                                        <textarea name="setting[company_address]" class="form-control" rows="4"><?= clean($settings['company_address'] ?? '') ?></textarea>
+                                        <label class="form-label">E-posta</label>
+                                        <input type="email" name="setting[company_email]" class="form-control" value="<?= clean($settings['company_email'] ?? '') ?>">
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Adres</label>
+                                <textarea name="setting[company_address]" class="form-control" rows="3"><?= clean($settings['company_address'] ?? '') ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- SEO Ayarları -->
+                        <div class="tab-pane fade" id="seo">
+                            <div class="mb-3">
+                                <label class="form-label">Ana Sayfa Meta Başlık</label>
+                                <input type="text" name="setting[meta_home_title]" class="form-control" value="<?= clean($settings['meta_home_title'] ?? '') ?>">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ana Sayfa Meta Açıklama</label>
+                                <textarea name="setting[meta_home_description]" class="form-control" rows="3"><?= clean($settings['meta_home_description'] ?? '') ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ana Sayfa Meta Anahtar Kelimeler</label>
+                                <textarea name="setting[meta_home_keywords]" class="form-control" rows="2"><?= clean($settings['meta_home_keywords'] ?? '') ?></textarea>
+                                <small class="text-muted">Virgülle ayırarak yazın</small>
                             </div>
                         </div>
 
@@ -145,69 +157,46 @@ foreach ($currentSettings as $setting) {
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">SMTP Host</label>
-                                        <input type="text" name="setting[smtp_host]" class="form-control"
-                                               value="<?= clean($settings['smtp_host'] ?? '') ?>" placeholder="smtp.gmail.com">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">SMTP Port</label>
-                                        <input type="number" name="setting[smtp_port]" class="form-control"
-                                               value="<?= clean($settings['smtp_port'] ?? '587') ?>">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Şifreleme</label>
-                                        <select name="setting[smtp_encryption]" class="form-select">
-                                            <option value="tls" <?= ($settings['smtp_encryption'] ?? 'tls') === 'tls' ? 'selected' : '' ?>>TLS</option>
-                                            <option value="ssl" <?= ($settings['smtp_encryption'] ?? 'tls') === 'ssl' ? 'selected' : '' ?>>SSL</option>
-                                        </select>
+                                        <input type="text" name="setting[smtp_host]" class="form-control" value="<?= clean($settings['smtp_host'] ?? '') ?>">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">SMTP Port</label>
+                                        <input type="number" name="setting[smtp_port]" class="form-control" value="<?= clean($settings['smtp_port'] ?? '587') ?>">
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">SMTP Kullanıcı Adı</label>
-                                        <input type="text" name="setting[smtp_username]" class="form-control"
-                                               value="<?= clean($settings['smtp_username'] ?? '') ?>">
+                                        <input type="text" name="setting[smtp_username]" class="form-control" value="<?= clean($settings['smtp_username'] ?? '') ?>">
                                     </div>
-
+                                </div>
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">SMTP Şifre</label>
-                                        <input type="password" name="setting[smtp_password]" class="form-control"
-                                               value="<?= clean($settings['smtp_password'] ?? '') ?>">
+                                        <input type="password" name="setting[smtp_password]" class="form-control" value="<?= clean($settings['smtp_password'] ?? '') ?>">
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- SEO Ayarları -->
-                        <div class="tab-pane fade" id="seo">
-                            <div class="mb-3">
-                                <label class="form-label">Ana Sayfa Meta Başlık</label>
-                                <input type="text" name="setting[meta_home_title]" class="form-control"
-                                       value="<?= clean($settings['meta_home_title'] ?? '') ?>">
-                            </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Ana Sayfa Meta Açıklama</label>
-                                <textarea name="setting[meta_home_description]" class="form-control" rows="3"><?= clean($settings['meta_home_description'] ?? '') ?></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Ana Sayfa Meta Kelimeler</label>
-                                <input type="text" name="setting[meta_home_keywords]" class="form-control"
-                                       value="<?= clean($settings['meta_home_keywords'] ?? '') ?>">
-                                <small class="text-muted">Virgülle ayırarak yazın</small>
+                                <label class="form-label">SMTP Şifreleme</label>
+                                <select name="setting[smtp_encryption]" class="form-control">
+                                    <option value="tls" <?= ($settings['smtp_encryption'] ?? 'tls') === 'tls' ? 'selected' : '' ?>>TLS</option>
+                                    <option value="ssl" <?= ($settings['smtp_encryption'] ?? '') === 'ssl' ? 'selected' : '' ?>>SSL</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <hr>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Kaydet
-                        </button>
-                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Ayarları Kaydet
+                    </button>
                 </form>
             </div>
         </div>
