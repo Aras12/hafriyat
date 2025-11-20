@@ -886,3 +886,26 @@ INSERT INTO `settings` (`setting_key`, `setting_value`) VALUES
 ('why_card4_title', 'Uzman Kadro'),
 ('why_card4_text', 'Deneyimli ve sertifikalı operatörlerimizle çalışıyoruz')
 ON DUPLICATE KEY UPDATE setting_value=VALUES(setting_value);
+
+-- Menu Management Table
+CREATE TABLE IF NOT EXISTS `menus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `target` enum('_self','_blank') DEFAULT '_self',
+  `icon` varchar(100) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT '0',
+  `position` enum('header','footer') DEFAULT 'header',
+  `sort_order` int(11) DEFAULT '0',
+  `status` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `menus` (`title`, `url`, `target`, `icon`, `parent_id`, `position`, `sort_order`, `status`) VALUES
+('Ana Sayfa', '/', '_self', 'fas fa-home', 0, 'header', 1, 1),
+('Hakkımızda', '/hakkimizda', '_self', 'fas fa-info-circle', 0, 'header', 2, 1),
+('Hizmetler', '/hizmetler', '_self', 'fas fa-cogs', 0, 'header', 3, 1),
+('Galeri', '/galeri', '_self', 'fas fa-images', 0, 'header', 4, 1),
+('Projeler', '/projeler', '_self', 'fas fa-project-diagram', 0, 'header', 5, 1),
+('Blog', '/blog', '_self', 'fas fa-blog', 0, 'header', 6, 1),
+('İletişim', '/iletisim', '_self', 'fas fa-envelope', 0, 'header', 7, 1);

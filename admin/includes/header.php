@@ -162,6 +162,11 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
                 </a>
             </li>
             <li>
+                <a href="menus.php" class="<?= $current_page === 'menus' ? 'active' : '' ?>">
+                    <i class="fas fa-bars"></i> Menü Yönetimi
+                </a>
+            </li>
+            <li>
                 <a href="messages.php" class="<?= $current_page === 'messages' ? 'active' : '' ?>">
                     <i class="fas fa-envelope"></i> Gelen Mesajlar
                 </a>

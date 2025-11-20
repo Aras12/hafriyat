@@ -64,6 +64,9 @@ include 'includes/header.php';
                             <a class="nav-link" data-bs-toggle="tab" href="#iletisim">İletişim Bilgileri</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#nedenbiz">Neden Biz?</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#seo">SEO Ayarları</a>
                         </li>
                         <li class="nav-item">
@@ -129,6 +132,128 @@ include 'includes/header.php';
                             <div class="mb-3">
                                 <label class="form-label">Adres</label>
                                 <textarea name="setting[company_address]" class="form-control" rows="3"><?= clean($settings['company_address'] ?? '') ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Neden Biz? -->
+                        <div class="tab-pane fade" id="nedenbiz">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i> Anasayfa slider altında görünen "Neden Biz?" bölümünü buradan düzenleyebilirsiniz.
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Bölüm Aktif Mi?</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" name="setting[why_us_enabled]" value="1" <?= ($settings['why_us_enabled'] ?? '1') == '1' ? 'checked' : '' ?>>
+                                    <label class="form-check-label">Aktif</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Başlık</label>
+                                        <input type="text" name="setting[why_us_title]" class="form-control" value="<?= clean($settings['why_us_title'] ?? 'Neden Kayseri Emir Hafriyat?') ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Alt Başlık</label>
+                                        <input type="text" name="setting[why_us_subtitle]" class="form-control" value="<?= clean($settings['why_us_subtitle'] ?? 'Güvenilir, Hızlı ve Profesyonel Hizmet Anlayışı') ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <h6 class="mb-3"><i class="fas fa-star"></i> Kart 1</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">İkon (Font Awesome)</label>
+                                        <input type="text" name="setting[why_card1_icon]" class="form-control" value="<?= clean($settings['why_card1_icon'] ?? 'fas fa-award') ?>" placeholder="fas fa-award">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Başlık</label>
+                                        <input type="text" name="setting[why_card1_title]" class="form-control" value="<?= clean($settings['why_card1_title'] ?? '25 Yıl Tecrübe') ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Açıklama</label>
+                                        <input type="text" name="setting[why_card1_text]" class="form-control" value="<?= clean($settings['why_card1_text'] ?? 'Çeyrek asırlık deneyimimizle sektörde öncüyüz') ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <h6 class="mb-3"><i class="fas fa-star"></i> Kart 2</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">İkon (Font Awesome)</label>
+                                        <input type="text" name="setting[why_card2_icon]" class="form-control" value="<?= clean($settings['why_card2_icon'] ?? 'fas fa-clock') ?>" placeholder="fas fa-clock">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Başlık</label>
+                                        <input type="text" name="setting[why_card2_title]" class="form-control" value="<?= clean($settings['why_card2_title'] ?? 'Zamanında Teslimat') ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Açıklama</label>
+                                        <input type="text" name="setting[why_card2_text]" class="form-control" value="<?= clean($settings['why_card2_text'] ?? 'Projelerinizi zamanında başlatır ve teslim ederiz') ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <h6 class="mb-3"><i class="fas fa-star"></i> Kart 3</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">İkon (Font Awesome)</label>
+                                        <input type="text" name="setting[why_card3_icon]" class="form-control" value="<?= clean($settings['why_card3_icon'] ?? 'fas fa-tools') ?>" placeholder="fas fa-tools">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Başlık</label>
+                                        <input type="text" name="setting[why_card3_title]" class="form-control" value="<?= clean($settings['why_card3_title'] ?? 'Modern Ekipman') ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Açıklama</label>
+                                        <input type="text" name="setting[why_card3_text]" class="form-control" value="<?= clean($settings['why_card3_text'] ?? 'En son teknoloji iş makineleri ve ekipmanlar') ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <h6 class="mb-3"><i class="fas fa-star"></i> Kart 4</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">İkon (Font Awesome)</label>
+                                        <input type="text" name="setting[why_card4_icon]" class="form-control" value="<?= clean($settings['why_card4_icon'] ?? 'fas fa-users') ?>" placeholder="fas fa-users">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Başlık</label>
+                                        <input type="text" name="setting[why_card4_title]" class="form-control" value="<?= clean($settings['why_card4_title'] ?? 'Uzman Kadro') ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Açıklama</label>
+                                        <input type="text" name="setting[why_card4_text]" class="form-control" value="<?= clean($settings['why_card4_text'] ?? 'Deneyimli operatörler ve profesyonel ekip') ?>">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
